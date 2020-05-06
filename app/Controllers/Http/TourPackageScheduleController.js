@@ -4,7 +4,7 @@ const TourPackageSchedule = use('App/Models/TourPackageSchedule')
 
 class TourPackageScheduleController {
 
-    async getTourPackage({ response }){
+    async getTourPackageSchedule({ response }){
         try {
             const dataTourPackageSchedule = await TourPackageSchedule.query().with('tourPackage').fetch();
             return response.json({
@@ -15,7 +15,8 @@ class TourPackageScheduleController {
         } catch (error) {
             return response.json({
                 'status': 500,
-                'message': 'Terjadi kesalahan pada server'
+                'message': 'Terjadi kesalahan pada server',
+                'error': error
             });
         }
 
@@ -46,7 +47,7 @@ class TourPackageScheduleController {
             dataTourPackageSchedule.tour_package_schedule_meet_lat = request.post().tour_package_schedule_meet_lat;
             dataTourPackageSchedule.tour_package_schedule_meet_lang = request.post().tour_package_schedule_meet_lang;
             dataTourPackageSchedule.tour_package_schedule_price = request.post().tour_package_schedule_price;
-            dataTourPackageSchedule.tour_package_schedule_price = request.post().tour_package_schedule_price;
+            dataTourPackageSchedule.tour_package_schedule_slot = request.post().tour_package_schedule_slot;
             dataTourPackageSchedule.tour_package_schedule_depature = request.post().tour_package_schedule_depature;
             await dataTourPackageSchedule.save();
         
@@ -71,7 +72,7 @@ class TourPackageScheduleController {
             dataTourPackageSchedule.tour_package_schedule_meet_lat = request.post().tour_package_schedule_meet_lat;
             dataTourPackageSchedule.tour_package_schedule_meet_lang = request.post().tour_package_schedule_meet_lang;
             dataTourPackageSchedule.tour_package_schedule_price = request.post().tour_package_schedule_price;
-            dataTourPackageSchedule.tour_package_schedule_price = request.post().tour_package_schedule_price;
+            dataTourPackageSchedule.tour_package_schedule_slot = request.post().tour_package_schedule_slot;
             dataTourPackageSchedule.tour_package_schedule_depature = request.post().tour_package_schedule_depature;
             await dataTourPackageSchedule.save();
            

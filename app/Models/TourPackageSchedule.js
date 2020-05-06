@@ -5,11 +5,11 @@ const Model = use('Model')
 
 class TourPackageSchedule extends Model {
     TourPackageOrder(){
-        return this.hasMany('App/Model/TourPackageOrder')
+        return this.hasMany('App/Models/TourPackageOrder')
     }
 
     tourPackage(){
-        return this.belongsTo('App/Model/TourPackage')
+        return this.belongsTo('App/Models/TourPackage')
     }
 }
 

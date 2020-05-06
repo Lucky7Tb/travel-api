@@ -5,7 +5,7 @@ const Model = use('Model')
 
 class TourPackageOrderDetail extends Model {
     tourPackageOrder(){
-        return this.belongsTo('App/Model/TourPackageOrder')
+        return this.belongsTo('App/Models/TourPackageOrder')
     }
 }
 

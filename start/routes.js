@@ -31,6 +31,6 @@ Route.group(() => {
   Route.put('tourpackageschedule', 'TourPackageScheduleController.updateTourPackageSchedule').validator('TourPackageSchedule');
   Route.delete('tourpackageschedule', 'TourPackageScheduleController.deleteTourPackageSchedule');
 
-}).prefix('api');
+}).prefix('api')
 
 Route.get('tes', 'TourPackageController.tes')

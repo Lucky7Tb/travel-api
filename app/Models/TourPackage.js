@@ -5,7 +5,7 @@ const Model = use('Model')
 
 class TourPackage extends Model {
     tourPackageSchedule(){
-        return this.hasMany('App/Model/TourPackageSchedule')
+        return this.hasMany('App/Models/TourPackageSchedule')
     }
 
     destination(){ 
