@@ -1,0 +1,16 @@
+'use strict'
+
+/** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
+const Model = use('Model')
+
+class TourPackageSchedule extends Model {
+    TourPackageOrder(){
+        return this.hasMany('App/Model/TourPackageOrder')
+    }
+
+    tourPackage(){
+        return this.belongsTo('App/Model/TourPackage')
+    }
+}
+
+module.exports = TourPackageSchedule
