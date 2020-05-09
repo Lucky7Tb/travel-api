@@ -7,7 +7,7 @@ class AdminSchema extends Schema {
   up () {
     this.create('admins', (table) => {
       table.increments()
-      table.integer('user_id').notNullable().unsigned().references('id').inTable('users')
+      table.integer('user_id').notNullable().unsigned().references('id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE')
       table.string('admin_name', 80).notNullable()
       table.string('admin_phone', 15).nullable().unique()
       table.text('admin_address').notNullable()

@@ -7,7 +7,7 @@ class TourPackageSchema extends Schema {
   up () {
     this.create('tour_packages', (table) => {
       table.increments()
-      table.integer('destination_id').notNullable().unsigned().references('id').inTable('destinations')
+      table.integer('destination_id').notNullable().unsigned().references('id').inTable('destinations').onDelete('CASCADE').onUpdate('CASCADE')
       table.string('tour_package_name', 80).notNullable()
       table.text('tour_package_description').notNullable()
       table.enu('tour_package_category', ['UMUM', 'INSTANSI']).defaultTo('UMUM')

@@ -10,6 +10,14 @@ Route.group(() => {
 }).prefix('api/auth');
 
 Route.group(() => {
+  // Admin route
+  Route.get('admin', 'AdminController.getAdmin');
+  Route.post('admin/retrive', 'AdminController.retriveAdmin');
+  Route.post('admin', 'AdminController.storeAdmin').validator('StoreAdmin');
+  Route.put('admin', 'AdminController.updateAdmin').validator('UpdateAdmin');
+  Route.put('admin/changepassword', 'AdminController.changePasswordAdmin').validator('ChangePasswordAdmin');
+  Route.delete('admin', 'AdminController.deleteAdmin');
+
   // Destination route
   Route.get('destination', 'DestinationController.getDestination');
   Route.post('destination/retrive', 'DestinationController.retriveDestination');

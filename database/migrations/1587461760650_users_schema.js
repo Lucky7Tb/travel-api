@@ -7,7 +7,7 @@ class UsersSchema extends Schema {
   up () {
     this.create('users', (table) => {
       table.increments()
-      table.integer('role_id').notNullable().unsigned().references('id').inTable('roles')
+      table.integer('role_id').notNullable().unsigned().references('id').inTable('roles').onDelete('CASCADE').onUpdate('CASCADE')
       table.string('email', 254).notNullable().unique()
       table.datetime('email_verified_at').nullable()
       table.boolean('email_verified').defaultTo(true)

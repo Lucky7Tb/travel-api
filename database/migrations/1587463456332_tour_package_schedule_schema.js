@@ -7,7 +7,7 @@ class TourPackageScheduleSchema extends Schema {
   up () {
     this.create('tour_package_schedules', (table) => {
       table.increments()
-      table.integer('tour_package_id').notNullable().unsigned().references('id').inTable('tour_packages')
+      table.integer('tour_package_id').notNullable().unsigned().references('id').inTable('tour_packages').onDelete('CASCADE').onUpdate('CASCADE')
       table.string('tour_package_schedule_meet_point', 50).notNullable()
       table.string('tour_package_schedule_meet_lat').nullable()
       table.string('tour_package_schedule_meet_lang').nullable()
