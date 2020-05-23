@@ -52,3 +52,6 @@ tmp
 
 # The development sqlite file
 database/*.sqlite
+
+# Allowing no_photo image
+!/public/tour_package_picture/no_photo.svg

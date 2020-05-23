@@ -4,7 +4,7 @@ class Destination {
   get rules () {
     return {
       destination_name: 'required|string',
-      destination_description: 'string'
+      destination_description: 'max:80'
     }
   }
 

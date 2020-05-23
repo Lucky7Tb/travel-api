@@ -3,17 +3,15 @@
 const Destination = use('App/Models/Destination')
 
 class DestinationController {
-    async getDestination({request, response}){
+    async getDestination({response}){
         try {
-            const dataDestination = await Destination.all();
-            return response.json({
-                'status': 200,
+            const dataDestination = await Destination.query().select('id', 'destination_name', 'destination_description').orderBy('created_at', 'desc').fetch();
+            return response.status(200).json({
                 'message': 'Success',
-                'data': dataDestination
+                'dataDestination': dataDestination
             });
         } catch (error) {
-            return response.json({
-                'status': 500,
+            return response.status(500).json({
                 'message': 'Terjadi kesalahan pada server',
                 'error': error
             });
@@ -23,14 +21,12 @@ class DestinationController {
     async retriveDestination({request, response}){
         try {
             const dataDestination = await Destination.find(request.post().destination_id);
-            return response.json({
-                'status': 200,
+            return response.status(200).json({
                 'message': 'Success',
-                'data': dataDestination
+                'dataDestination': dataDestination
             });
         } catch (error) {
-            return response.json({
-                'status': 500,
+            return response.status(500).json({
                 'message': 'Terjadi kesalahan pada server',
                 'error': error
             });
@@ -43,13 +39,11 @@ class DestinationController {
             dataDestination.destination_name = request.post().destination_name;
             dataDestination.destination_description = request.post().destination_description;
             await dataDestination.save();
-            return response.json({
-                'status': 200,
-                'message': 'Success'
+            return response.status(200).json({
+                'message': 'Insert destinasi sukses'
             });
         } catch (error) {
-            return response.json({
-                'status': 500,
+            return response.status(500).json({
                 'message': 'Terjadi kesalahan pada server',
                 'error': error
             });
@@ -62,13 +56,11 @@ class DestinationController {
             dataDestination.destination_name = request.post().destination_name;
             dataDestination.destination_description = request.post().destination_description;
             await dataDestination.save();
-            return response.json({
-                'status': 200,
-                'message': 'Success'
+            return response.status(200).json({
+                'message': 'Update destinasi sukses'
             });
         } catch (error) {
-            return response.json({
-                'status': 500,
+            return response.status(500).json({
                 'message': 'Terjadi kesalahan pada server',
                 'error': error
             });
@@ -79,13 +71,11 @@ class DestinationController {
         try {
             const dataDestination = await Destination.find(request.post().destination_id);
             await dataDestination.delete();
-            return response.json({
-                'status': 200,
-                'message': 'Success'
+            return response.status(200).json({
+                'message': 'Delete destinasi sukses'
             });
         } catch (error) {
-            return response.json({
-                'status': 500,
+            return response.status(500).json({
                 'message': 'Terjadi kesalahan pada server',
                 'error': error
             });
