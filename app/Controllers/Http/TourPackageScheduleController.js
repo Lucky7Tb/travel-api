@@ -6,33 +6,29 @@ class TourPackageScheduleController {
 
     async getTourPackageSchedule({ response }){
         try {
-            const dataTourPackageSchedule = await TourPackageSchedule.query().with('tourPackage').fetch();
-            return response.json({
-                'status': 200,
+            const dataTourPackageSchedule = await TourPackageSchedule.query().orderBy('created_at', 'desc').with('tourPackage', query => {
+                query.select("id", "tour_package_name")
+            }).fetch();
+            return response.status(200).json({
                 'message': 'Success',
-                'data': dataTourPackageSchedule
+                'dataTourPackageSchedule': dataTourPackageSchedule
             });
         } catch (error) {
-            return response.json({
-                'status': 500,
-                'message': 'Terjadi kesalahan pada server',
-                'error': error
+            return response.status(500).json({
+                'message': 'Terjadi kesalahan pada server'
             });
         }
-
     }
 
     async retriveTourPackageSchedule({ request, response}){
         try {
             const dataTourPackageSchedule = await TourPackageSchedule.find(request.post().tour_package_schedule_id);
-            return response.json({
-                'status': 200,
+            return response.status(200).json({
                 'message': 'Success',
-                'data': dataTourPackageSchedule
+                'dataTourPackageSchedule': dataTourPackageSchedule
             })
         } catch (error) {
-            return response.json({
-                'status': 500,
+            return response.status(250).json({
                 'message': 'Terjadi kesalahan pada server'
             });
         }
@@ -51,13 +47,11 @@ class TourPackageScheduleController {
             dataTourPackageSchedule.tour_package_schedule_depature = request.post().tour_package_schedule_depature;
             await dataTourPackageSchedule.save();
         
-            return response.json({
-                'status': 200,
-                'message': 'Success'
+            return response.status(200).json({
+                'message': 'Insert jadwal tour sukses'
             });
         } catch (error) {
-            return response.json({
-                'status': 500,
+            return response.status(500).json({
                 'message': 'Terjadi kesalahan pada server'
             });
         }
@@ -76,13 +70,11 @@ class TourPackageScheduleController {
             dataTourPackageSchedule.tour_package_schedule_depature = request.post().tour_package_schedule_depature;
             await dataTourPackageSchedule.save();
            
-            return response.json({
-                'status': 200,
-                'message': 'Success'
+            return response.status(200).json({
+                'message': 'Update jadwal tour sukses'
             });
         } catch (error) {
-            return response.json({
-                'status': 500,
+            return response.status(500).json({
                 'message': 'Terjadi kesalahan pada server'
             });
         }
@@ -93,13 +85,11 @@ class TourPackageScheduleController {
             const dataTourPackageSchedule = await TourPackageSchedule.find(request.post().tour_package_schedule_id);
             await dataTourPackageSchedule.delete();
 
-            return response.json({
-                'status': 200,
-                'message': 'Success'
+            return response.status(200).json({
+                'message': 'Hapus jadwal tour sukses'
             })
         } catch (error) {
-            return response.json({
-                'status': 500,
+            return response.status(500).json({
                 'message': 'Terjadi kesalahan pada server'
             });
         }

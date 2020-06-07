@@ -15,7 +15,7 @@ const Hash = use('Hash')
 
 class TravelSeeder {
   async run () {
-    const role = await Database.from('Roles')
+    const role = await Database.from('roles')
         .insert([
           {
             'role_name': 'Admin',
